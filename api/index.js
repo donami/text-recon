@@ -23,10 +23,40 @@ export default async function (req, res) {
   });
 
   const page = await browser.newPage();
-  await page.goto('https://github.com');
 
-  res.send('hello');
+  await page.goto('https://www.futwiz.com/en/fifa23/player/xaver-schlager/576');
+
+  await page.waitForSelector('.player-prices');
+  // Get all prices
+  let prices = await page.$$eval('.player-prices .price-num', (links) => {
+    if (links.length) {
+      return links[0].textContent;
+    }
+    return 0;
+  });
+  scrapedData.push(prices);
+
+  await page.close();
+
+  res.json({ scrapedData });
 }
+// export default async function (req, res) {
+//   // Edge executable will return an empty string locally.
+//   const executablePath =
+//     (await edgeChromium.executablePath) || LOCAL_CHROME_EXECUTABLE;
+
+//   const browser = await puppeteer.launch({
+//     executablePath,
+//     args: edgeChromium.args,
+//     headless: false,
+//   });
+
+//   const page = await browser.newPage();
+
+//   await page.goto('https://github.com');
+
+//   res.send('hello');
+// }
 
 // export default function handler(req, res) {
 //   res.status(200).json({
