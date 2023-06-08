@@ -23,12 +23,13 @@ export default async function (req, res) {
   });
 
   const page = await browser.newPage();
+  page.setDefaultNavigationTimeout(0);
 
   let scrapedData = [];
 
   await page.goto('https://www.futwiz.com/en/fifa23/player/xaver-schlager/576');
 
-  await page.waitForSelector('.player-prices');
+  await page.waitForSelector('.player-prices', { timeout: 0 });
   // Get all prices
   let prices = await page.$$eval('.player-prices .price-num', (links) => {
     if (links.length) {
