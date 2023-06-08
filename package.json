@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {},
+  "dependencies": {
+    "chrome-aws-lambda": "10.1.0",
+    "puppeteer-core": "10.1.0"
+  }
+}
