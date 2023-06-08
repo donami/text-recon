@@ -9,7 +9,7 @@ import puppeteer from 'puppeteer-core';
 // See https://github.com/vercel/og-image for a more resilient
 // system-agnostic options for Puppeteeer.
 const LOCAL_CHROME_EXECUTABLE =
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
 export default async function (req, res) {
   // Edge executable will return an empty string locally.
@@ -23,6 +23,8 @@ export default async function (req, res) {
   });
 
   const page = await browser.newPage();
+
+  let scrapedData = [];
 
   await page.goto('https://www.futwiz.com/en/fifa23/player/xaver-schlager/576');
 
